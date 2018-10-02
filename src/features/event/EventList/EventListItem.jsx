@@ -39,7 +39,7 @@ class EventListItem extends Component {
                 <span>{event.description} </span>
                 <Button.Group floated="right">
                   <Button onClick={onEventOpen(event)} as="a" color="teal"  content="View" />
-                  <Button onClick={onDeleteEvent(event.id)} as="a" basic content="Delete" />
+                  <Button onClick={onDeleteEvent(event.id)} as="a" content="Delete" />
                 </Button.Group>
                 
               </Segment>
