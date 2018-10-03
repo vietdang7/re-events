@@ -2,11 +2,11 @@ import React, { Component } from "react";
 import { Segment, Form, Button } from 'semantic-ui-react';
 
 const emptyEvent = {
-      title: '',
+      title: 'Add title',
       date: '',
-      city: '',
-      venue: '',
-      hostedBy: ''
+      city: 'Add city',
+      venue: 'Add Venue',
+      hostedBy: 'Add host person'
 }
 
 class EventForm extends Component {
@@ -16,11 +16,12 @@ class EventForm extends Component {
   }
 
   componentDidMount() {
+    console.log('selectedEvent', this.props.selectedEvent);
     if (this.props.selectedEvent !== null) {
       this.setState({
         event: this.props.selectedEvent
       })
-    }
+    } 
   }
 
   componentWillReceiveProps(nextProps) {
@@ -53,6 +54,7 @@ class EventForm extends Component {
   render() {
     const {clickCancel} = this.props;
     const {event} = this.state;
+    console.log(event);
     return (
       <Segment>
         <Form onSubmit={this.onFormSubmit}>
