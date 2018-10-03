@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Container } from 'semantic-ui-react'
+import { Container } from 'semantic-ui-react';
+import { Route } from 'react-router-dom';
 import EventDashboard from '../../features/event/EventDashboard/EventDashboard';
 import NavBar from '../../features/nav/NavBar/NavBar';
 
@@ -9,7 +10,7 @@ class App extends Component {
       <div>
         <NavBar />
         <Container className="main">
-          <EventDashboard/>
+          <Route path='/events' component={EventDashboard} />
         </Container>
         
       </div>
