@@ -1,10 +1,13 @@
-import React from 'react'
+import React from 'react';
+import { Grid } from 'semantic-ui-react';
 
 const SettingsDashboard = () => {
   return (
-    <div>
-      <h1>This is settings dashboard</h1>
-    </div>
+    <Grid>
+      <Grid.Column >
+        <h1>Settings</h1>
+      </Grid.Column>
+    </Grid>
   )
 }
 
