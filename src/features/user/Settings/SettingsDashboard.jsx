@@ -13,7 +13,7 @@ const SettingsDashboard = () => {
     <Grid>
       <Grid.Column width={12} >
         <Switch>
-          <Route path='/settings/basics' component={BasicsPage}/>
+          <Route path='/settings/basic' component={BasicsPage}/>
           <Route path='/settings/about' component={AboutPage}/>
           <Route path='/settings/photos' component={PhotosPage}/>
           <Route path='/settings/account' component={AccountPage}/>
