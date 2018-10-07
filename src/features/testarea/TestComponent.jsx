@@ -12,8 +12,7 @@ class TestComponent extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  data: state.test.data
-}
+const mapStateToProps = (state) => ({data: state.test.data})
+
 
 export default connect(mapStateToProps)(TestComponent);
