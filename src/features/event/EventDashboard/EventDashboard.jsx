@@ -1,13 +1,12 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import { Grid, Button } from "semantic-ui-react";
-import cuid from 'cuid';
+import cuid from "cuid";
 import EventList from "../EventList/EventList";
 import EventForm from "../EventForm/EventForm";
 
-
 class EventDashboard extends Component {
   state = {
-    events: eventsDashBoard,
     isOpen: false,
     selectedEvent: null
   };
@@ -25,52 +24,57 @@ class EventDashboard extends Component {
     });
   };
 
-  handleUpdateEvent = (updatedEvent) => {
+  handleUpdateEvent = updatedEvent => {
     this.setState({
       events: this.state.events.map(event => {
         if (event.id === updatedEvent.id) {
-          return Object.assign({}, updatedEvent)
+          return Object.assign({}, updatedEvent);
         } else {
-          return event
+          return event;
         }
       }),
       isOpen: false,
       selectedEvent: null
-    })
+    });
+  };
 
-  }
-
-  handleOpenEvent = (eventToOpen) => () => {
+  handleOpenEvent = eventToOpen => () => {
     this.setState({
       selectedEvent: eventToOpen,
       isOpen: true
-    })
-  }
+    });
+  };
 
-  handleCreateEvent = (newEvent) => {
+  handleCreateEvent = newEvent => {
     newEvent.id = cuid();
-    newEvent.hostPhotoURL = '/assets/user.png';
+    newEvent.hostPhotoURL = "/assets/user.png";
     const updatedEvents = [...this.state.events, newEvent];
     this.setState({
       events: updatedEvents,
       isOpen: false
-    })
-  }
+    });
+  };
 
-  handleDeleteEvent = (eventId) => () => {
+  handleDeleteEvent = eventId => () => {
     this.setState({
-      events: this.state.events.filter((event) => event.id !== eventId),
+      events: this.state.events.filter(event => event.id !== eventId),
       isOpen: false,
       selectedEvent: null
-    })
-  }
+    });
+  };
 
   render() {
-    const {selectedEvent} =  this.state;
+    const { selectedEvent } = this.state;
+    const { events } = this.props;
+    console.log(events);
     return (
       <Grid>
         <Grid.Column width={10}>
-          <EventList onEventOpen={this.handleOpenEvent} onDeleteEvent={this.handleDeleteEvent} events={this.state.events} />
+          <EventList
+            onEventOpen={this.handleOpenEvent}
+            onDeleteEvent={this.handleDeleteEvent}
+            events={events}
+          />
         </Grid.Column>
         <Grid.Column width={6}>
           <Button
@@ -79,7 +83,12 @@ class EventDashboard extends Component {
             content="Create Event"
           />
           {this.state.isOpen && (
-            <EventForm updateEvent={this.handleUpdateEvent} selectedEvent={selectedEvent} createEvent={this.handleCreateEvent} clickCancel={this.handleCancel}/>
+            <EventForm
+              updateEvent={this.handleUpdateEvent}
+              selectedEvent={selectedEvent}
+              createEvent={this.handleCreateEvent}
+              clickCancel={this.handleCancel}
+            />
           )}
         </Grid.Column>
       </Grid>
@@ -87,4 +96,8 @@ class EventDashboard extends Component {
   }
 }
 
-export default EventDashboard;
+const mapStateToProps = (state) => ({
+  events: state.events
+});
+
+export default connect(mapStateToProps)(EventDashboard);

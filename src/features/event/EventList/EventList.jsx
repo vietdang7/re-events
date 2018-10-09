@@ -4,6 +4,7 @@ import EventListItem from './EventListItem';
 class EventList extends Component {
   render() {
     const {events, onEventOpen, onDeleteEvent} = this.props;
+    console.log('events', events );
     return (
       <div>
         <h1>Event List </h1>
