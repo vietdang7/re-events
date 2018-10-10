@@ -4,6 +4,7 @@ import { Grid, Button } from "semantic-ui-react";
 import cuid from "cuid";
 import EventList from "../EventList/EventList";
 import EventForm from "../EventForm/EventForm";
+import { createEvent, updateEvent, deleteEvent } from '../eventActions';
 
 class EventDashboard extends Component {
   state = {
