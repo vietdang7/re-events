@@ -101,4 +101,10 @@ const mapStateToProps = (state) => ({
   events: state.events
 });
 
-export default connect(mapStateToProps)(EventDashboard);
+const mapDispatchToProps = {
+  createEvent,
+  updateEvent,
+  deleteEvent
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(EventDashboard);
