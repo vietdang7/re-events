@@ -57,11 +57,7 @@ class EventDashboard extends Component {
   };
 
   handleDeleteEvent = eventId => () => {
-    this.setState({
-      events: this.state.events.filter(event => event.id !== eventId),
-      isOpen: false,
-      selectedEvent: null
-    });
+    this.props.deleteEvent(eventId);
   };
 
   render() {
