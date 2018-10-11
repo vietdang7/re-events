@@ -1,4 +1,9 @@
-import React from 'react'
+import React from 'react';
+import EventDetailedHeader from './EventDetailedHeader';
+import EventDetailedInfo from './EventDetailedInfo';
+import EventDetailedChat from './EventDetailedChat';
+import EventDetailedSidebar from './EventDetailedSidebar'
+
 
 const EventDetailedPage = () => {
   return (
