@@ -1,6 +1,19 @@
 import React from "react";
 import { Segment, Image, Item, Header, Button } from 'semantic-ui-react';
 
+const eventImageStyle = {
+    filter: 'brightness(30%)'
+};
+
+const eventImageTextStyle = {
+    position: 'absolute',
+    bottom: '5%',
+    left: '5%',
+    width: '100%',
+    height: 'auto',
+    color: 'white'
+};
+
 const EventDetailedHeader = () => {
   return (
     <Segment.Group>
