@@ -1,91 +1,114 @@
 import React, { Component } from "react";
-import { Segment, Form, Button } from 'semantic-ui-react';
+import { connect } from "react-redux";
+import { Segment, Form, Button } from "semantic-ui-react";
 
-const emptyEvent = {
-      title: 'Add title',
-      date: '',
-      city: 'Add city',
-      venue: 'Add Venue',
-      hostedBy: 'Add host person'
-}
 
 class EventForm extends Component {
-
   state = {
-    event: emptyEvent
-  }
+    event: Object.assign({}, this.props.event)
+  };
 
-  componentDidMount() {
-    console.log('selectedEvent', this.props.selectedEvent);
-    if (this.props.selectedEvent !== null) {
-      this.setState({
-        event: this.props.selectedEvent
-      })
-    } 
-  }
-
-  componentWillReceiveProps(nextProps) {
-
-    if (nextProps.selectedEvent !== this.props.selectedEvent) {
-      this.setState({
-        event: nextProps.selectedEvent || emptyEvent
-      })
-    }
-  } 
-
-  onFormSubmit = (evt) => {
+  onFormSubmit = evt => {
     evt.preventDefault();
     if (this.state.event.id) {
       this.props.updateEvent(this.state.event);
     } else {
       this.props.createEvent(this.state.event);
     }
-    
-  }
+  };
 
-  onInputChange = (evt) => {
+  onInputChange = evt => {
     const newEvent = this.state.event;
     newEvent[evt.target.name] = evt.target.value;
     this.setState({
       event: newEvent
-    })
-  }
+    });
+  };
 
   render() {
-    const {clickCancel} = this.props;
-    const {event} = this.state;
+    const { clickCancel } = this.props;
+    const { event } = this.state;
     console.log(event);
     return (
       <Segment>
         <Form onSubmit={this.onFormSubmit}>
           <Form.Field>
             <label>Event Title</label>
-            <input name='title' onChange={this.onInputChange} value={event.title} placeholder="Event Title" />
+            <input
+              name="title"
+              onChange={this.onInputChange}
+              value={event.title}
+              placeholder="Event Title"
+            />
           </Form.Field>
           <Form.Field>
             <label>Event Date</label>
-            <input name='date' onChange={this.onInputChange} value={event.date} type="date" placeholder="Event Date" />
+            <input
+              name="date"
+              onChange={this.onInputChange}
+              value={event.date}
+              type="date"
+              placeholder="Event Date"
+            />
           </Form.Field>
           <Form.Field>
             <label>City</label>
-            <input name='city' onChange={this.onInputChange} value={event.city} placeholder="City event is taking place" />
+            <input
+              name="city"
+              onChange={this.onInputChange}
+              value={event.city}
+              placeholder="City event is taking place"
+            />
           </Form.Field>
           <Form.Field>
             <label>Venue</label>
-            <input name='venue' onChange={this.onInputChange} value={event.venue} placeholder="Enter the Venue of the event" />
+            <input
+              name="venue"
+              onChange={this.onInputChange}
+              value={event.venue}
+              placeholder="Enter the Venue of the event"
+            />
           </Form.Field>
           <Form.Field>
             <label>Hosted By</label>
-            <input name='hostedBy' onChange={this.onInputChange} value={event.hostedBy} placeholder="Enter the name of person hosting" />
+            <input
+              name="hostedBy"
+              onChange={this.onInputChange}
+              value={event.hostedBy}
+              placeholder="Enter the name of person hosting"
+            />
           </Form.Field>
           <Button positive type="submit">
             Submit
           </Button>
-          <Button onClick={clickCancel} type="button">Cancel</Button>
+          <Button onClick={clickCancel} type="button">
+            Cancel
+          </Button>
         </Form>
       </Segment>
     );
   }
 }
 
-export default EventForm;
+const mapStateToProps = (state, ownProps) => {
+  const eventId = ownProps.match.params.id;
+
+  let event = {
+    title: "Add title",
+    date: "",
+    city: "Add city",
+    venue: "Add Venue",
+    hostedBy: "Add host person"
+  };
+
+  if (eventId && state.events.length > 0) {
+    event = state.events.filter(event => event.id === eventId)[0];
+  }
+
+  return {
+    event
+  }
+
+};
+
+export default connect(mapStateToProps)(EventForm);
