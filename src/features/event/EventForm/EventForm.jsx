@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Segment, Form, Button } from "semantic-ui-react";
+import { createEvent, updateEvent } from '../eventActions';
 
 
 class EventForm extends Component {
@@ -111,4 +112,9 @@ const mapStateToProps = (state, ownProps) => {
 
 };
 
-export default connect(mapStateToProps)(EventForm);
+const mapDispatchToProps = {
+  createEvent,
+  updateEvent
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(EventForm);
