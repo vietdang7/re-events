@@ -1,55 +1,13 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Grid, Button } from "semantic-ui-react";
-import cuid from "cuid";
+import { Grid } from "semantic-ui-react";
 import EventList from "../EventList/EventList";
 import EventForm from "../EventForm/EventForm";
-import { createEvent, updateEvent, deleteEvent } from '../eventActions';
+import { deleteEvent } from '../eventActions';
 
 class EventDashboard extends Component {
-  state = {
-    isOpen: false,
-    selectedEvent: null
-  };
-
-  handleFormOpen = () => {
-    this.setState({
-      selectedEvent: null,
-      isOpen: true
-    });
-  };
-
-  handleCancel = () => {
-    this.setState({
-      isOpen: false
-    });
-  };
-
-  handleUpdateEvent = updatedEvent => {
-    this.props.updateEvent(updatedEvent);
-    this.setState({
-      isOpen: false,
-      selectedEvent: null
-    });
-  };
-
-  handleOpenEvent = eventToOpen => () => {
-    this.setState({
-      selectedEvent: eventToOpen,
-      isOpen: true
-    });
-  };
-
-  handleCreateEvent = newEvent => {
-    newEvent.id = cuid();
-    newEvent.hostPhotoURL = "/assets/user.png";
-    this.props.createEvent(newEvent);
-    this.setState({
-      isOpen: false
-    });
-  };
-
-  handleDeleteEvent = eventId => () => {
+ 
+ handleDeleteEvent = eventId => () => {
     this.props.deleteEvent(eventId);
   };
 
@@ -61,7 +19,6 @@ class EventDashboard extends Component {
       <Grid>
         <Grid.Column width={10}>
           <EventList
-            onEventOpen={this.handleOpenEvent}
             onDeleteEvent={this.handleDeleteEvent}
             events={events}
           />
@@ -79,8 +36,6 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = {
-  createEvent,
-  updateEvent,
   deleteEvent
 }
 
