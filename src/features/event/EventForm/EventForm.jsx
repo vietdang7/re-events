@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import cuid from 'cuid';
 import { Segment, Form, Button } from "semantic-ui-react";
 import { createEvent, updateEvent } from '../eventActions';
 
@@ -14,7 +15,13 @@ class EventForm extends Component {
     if (this.state.event.id) {
       this.props.updateEvent(this.state.event);
     } else {
-      this.props.createEvent(this.state.event);
+      const newEvent = {
+        ...this.state.event,
+        id: cuid(),
+        hostPhotoURL: '/assets/user.png'
+      }
+      this.props.createEvent(newEvent);
+      this.props.history.push('/events');
     }
   };
 
