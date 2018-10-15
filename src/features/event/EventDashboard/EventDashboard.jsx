@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Grid } from "semantic-ui-react";
 import EventList from "../EventList/EventList";
-import EventForm from "../EventForm/EventForm";
+
 import { deleteEvent } from '../eventActions';
 
 class EventDashboard extends Component {
@@ -12,7 +12,7 @@ class EventDashboard extends Component {
   };
 
   render() {
-    const { selectedEvent } = this.state;
+   
     const { events } = this.props;
     console.log(events);
     return (
