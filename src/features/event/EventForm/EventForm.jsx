@@ -14,6 +14,7 @@ class EventForm extends Component {
     evt.preventDefault();
     if (this.state.event.id) {
       this.props.updateEvent(this.state.event);
+      this.props.history.goBack();
     } else {
       const newEvent = {
         ...this.state.event,
@@ -89,7 +90,7 @@ class EventForm extends Component {
           <Button positive type="submit">
             Submit
           </Button>
-          <Button onClick={clickCancel} type="button">
+          <Button onClick={this.props.history.goBack} type="button">
             Cancel
           </Button>
         </Form>
