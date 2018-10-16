@@ -1,10 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { reduxForm, Field } from 'redux-form';
-import cuid from 'cuid';
+import { reduxForm, Field } from "redux-form";
+import cuid from "cuid";
 import { Segment, Form, Button } from "semantic-ui-react";
-import { createEvent, updateEvent } from '../eventActions';
-
+import { createEvent, updateEvent } from "../eventActions";
 
 class EventForm extends Component {
   state = {
@@ -20,10 +19,10 @@ class EventForm extends Component {
       const newEvent = {
         ...this.state.event,
         id: cuid(),
-        hostPhotoURL: '/assets/user.png'
-      }
+        hostPhotoURL: "/assets/user.png"
+      };
       this.props.createEvent(newEvent);
-      this.props.history.push('/events');
+      this.props.history.push("/events");
     }
   };
 
@@ -42,15 +41,7 @@ class EventForm extends Component {
     return (
       <Segment>
         <Form onSubmit={this.onFormSubmit}>
-          <Form.Field>
-            <label>Event Title</label>
-            <input
-              name="title"
-              onChange={this.onInputChange}
-              value={event.title}
-              placeholder="Event Title"
-            />
-          </Form.Field>
+          <Field name="title" type="text" component="input" placeholder='Event Title'/>
           <Form.Field>
             <label>Event Date</label>
             <input
@@ -117,13 +108,15 @@ const mapStateToProps = (state, ownProps) => {
 
   return {
     event
-  }
-
+  };
 };
 
 const mapDispatchToProps = {
   createEvent,
   updateEvent
-}
+};
 
-export default connect(mapStateToProps, mapDispatchToProps)(reduxForm({form: 'eventForm'})(EventForm));
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(reduxForm({ form: "eventForm" })(EventForm));
