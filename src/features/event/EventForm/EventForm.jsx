@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { reduxForm, Field } from 'redux-form';
 import cuid from 'cuid';
 import { Segment, Form, Button } from "semantic-ui-react";
 import { createEvent, updateEvent } from '../eventActions';
@@ -125,4 +126,4 @@ const mapDispatchToProps = {
   updateEvent
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(EventForm);
+export default connect(mapStateToProps, mapDispatchToProps)(reduxForm({form: 'eventForm'})(EventForm));
