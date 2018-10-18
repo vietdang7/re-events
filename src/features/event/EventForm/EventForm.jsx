@@ -36,9 +36,7 @@ class EventForm extends Component {
   };
 
   render() {
-    const { clickCancel } = this.props;
-    const { event } = this.state;
-    console.log(event);
+   
     return (
       <Grid>
         <Grid.Column width={10}>
