@@ -43,6 +43,7 @@ class EventForm extends Component {
       <Grid>
         <Grid.Column width={10}>
           <Segment>
+            <Header sub color="teal" content="Event Details" />
             <Form onSubmit={this.onFormSubmit}>
               <Field
                 name="title"
@@ -62,6 +63,7 @@ class EventForm extends Component {
                 component={TextInput}
                 placeholder="Tell us about your event"
               />
+              <Header sub color="teal" content="Event Location Details" />
               <Field
                 name="city"
                 type="text"
