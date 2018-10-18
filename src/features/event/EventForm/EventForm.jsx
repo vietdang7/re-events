@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { reduxForm, Field } from "redux-form";
 import cuid from "cuid";
-import { Segment, Form, Button } from "semantic-ui-react";
+import { Segment, Form, Button, Grid, Header } from "semantic-ui-react";
 import { createEvent, updateEvent } from "../eventActions";
 import TextInput from '../../../app/common/form/TextInput';
 
@@ -48,43 +48,7 @@ class EventForm extends Component {
           <Field name="city" type="text" component={TextInput} placeholder='Event city'/>
           <Field name="venue" type="text" component={TextInput} placeholder='Event Menu'/>
           <Field name="date" type="text" component={TextInput} placeholder='Event Date'/>
-          <Form.Field>
-            <label>Event Date</label>
-            <input
-              name="date"
-              onChange={this.onInputChange}
-              value={event.date}
-              type="date"
-              placeholder="Event Date"
-            />
-          </Form.Field>
-          <Form.Field>
-            <label>City</label>
-            <input
-              name="city"
-              onChange={this.onInputChange}
-              value={event.city}
-              placeholder="City event is taking place"
-            />
-          </Form.Field>
-          <Form.Field>
-            <label>Venue</label>
-            <input
-              name="venue"
-              onChange={this.onInputChange}
-              value={event.venue}
-              placeholder="Enter the Venue of the event"
-            />
-          </Form.Field>
-          <Form.Field>
-            <label>Hosted By</label>
-            <input
-              name="hostedBy"
-              onChange={this.onInputChange}
-              value={event.hostedBy}
-              placeholder="Enter the name of person hosting"
-            />
-          </Form.Field>
+          
           <Button positive type="submit">
             Submit
           </Button>
