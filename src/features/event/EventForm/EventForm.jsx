@@ -7,9 +7,7 @@ import { createEvent, updateEvent } from "../eventActions";
 import TextInput from "../../../app/common/form/TextInput";
 
 class EventForm extends Component {
-  state = {
-    event: Object.assign({}, this.props.event)
-  };
+ 
 
   onFormSubmit = evt => {
     evt.preventDefault();
@@ -27,13 +25,6 @@ class EventForm extends Component {
     }
   };
 
-  onInputChange = evt => {
-    const newEvent = this.state.event;
-    newEvent[evt.target.name] = evt.target.value;
-    this.setState({
-      event: newEvent
-    });
-  };
 
   render() {
    
