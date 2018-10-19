@@ -50,7 +50,8 @@ class EventForm extends Component {
               <Field
                 name="description"
                 type="text"
-                component={TextInput}
+                rows={3}
+                component={TextArea}
                 placeholder="Tell us about your event"
               />
               <Header sub color="teal" content="Event Location Details" />
