@@ -92,11 +92,11 @@ const mapStateToProps = (state, ownProps) => {
   const eventId = ownProps.match.params.id;
 
   let event = {
-    title: "Add title",
+    title: "",
     date: "",
-    city: "Add city",
-    venue: "Add Venue",
-    hostedBy: "Add host person"
+    city: "",
+    venue: "",
+    hostedBy: ""
   };
 
   if (eventId && state.events.length > 0) {
