@@ -6,6 +6,7 @@ import { Segment, Form, Button, Grid, Header } from "semantic-ui-react";
 import { createEvent, updateEvent } from "../eventActions";
 import TextInput from "../../../app/common/form/TextInput";
 import TextArea from "../../../app/common/form/TextArea";
+import SelectInput from "../../../app/common/form/SelectInput";
 
 class EventForm extends Component {
  
@@ -44,7 +45,7 @@ class EventForm extends Component {
               <Field
                 name="category"
                 type="text"
-                component={TextInput}
+                component={SelectInput}
                 placeholder="What is your event about?"
               />
               <Field
