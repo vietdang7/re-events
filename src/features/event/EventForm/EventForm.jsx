@@ -50,7 +50,7 @@ class EventForm extends Component {
 
 
   render() {
-   
+    const {invalid, submitting, pristine} = this.props;
     return (
       <Grid>
         <Grid.Column width={10}>
@@ -98,7 +98,7 @@ class EventForm extends Component {
                 placeholder="Event Date"
               />
 
-              <Button positive type="submit">
+              <Button disabled={invalid || submitting || pristine} positive type="submit">
                 Submit
               </Button>
               <Button onClick={this.props.history.goBack} type="button">
