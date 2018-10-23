@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { reduxForm, Field } from "redux-form";
+import { composeValidators, combineValidators, isRequired, hasLengthGreaterThan } from 'revalidate';
 import cuid from "cuid";
 import { Segment, Form, Button, Grid, Header } from "semantic-ui-react";
 import { createEvent, updateEvent } from "../eventActions";
@@ -16,6 +17,17 @@ const category = [
     {key: 'music', text: 'Music', value: 'music'},
     {key: 'travel', text: 'Travel', value: 'travel'},
 ];
+
+const validate = combineValidators({
+  title: isRequired({message: 'The event title is required'}),
+  category: isRequired({message: 'Please provide the category'}),
+  description: composeValidators(
+    isRequired({message: 'Please enter a description'}),
+    hasLengthGreaterThan(4)({message: 'Description needs to be at least 5 characters'})
+  )(),
+  city: isRequired('city'),
+  venue: isRequired('venue')
+});
 
 class EventForm extends Component {
  
