@@ -134,4 +134,4 @@ const mapDispatchToProps = {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(reduxForm({ form: "eventForm", enableReinitialize: true })(EventForm));
+)(reduxForm({ form: "eventForm", enableReinitialize: true, validate })(EventForm));
